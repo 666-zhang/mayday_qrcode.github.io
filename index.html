@@ -485,8 +485,8 @@
   <!-- 歌词引用 -->
   <div class="lyric-quote">
     <div class="quote-mark">♫</div>
-    <p class="quote-text" id="lyricQuote">有些事现在不做一辈子都不会做了</p>
-    <p class="quote-source">—— 五月天 《有些事现在不做一辈子都不会做了》</p>
+    <p class="quote-text" id="lyricQuote">有没有那么一朵玫瑰 永远不凋谢</p>
+    <p class="quote-source">—— 五月天 《如烟》</p>
   </div>
 
   <!-- 底部礼物 -->
@@ -619,7 +619,7 @@ const cursor = document.createElement("span");
 cursor.className = "cursor-blink";
 recommendDiv.appendChild(cursor);
 
-document.getElementById("blessingText").textContent = CONFIG.blessing;
+document.getElementById("blessingText").innerHTML = CONFIG.blessing.replace(/ /g, "<br>");
 document.getElementById("lyricQuote").textContent = CONFIG.lyricQuote;
 document.querySelector(".quote-source").textContent =
   "—— 五月天 《" + CONFIG.songName + "》";
