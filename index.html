@@ -619,7 +619,8 @@ const cursor = document.createElement("span");
 cursor.className = "cursor-blink";
 recommendDiv.appendChild(cursor);
 
-document.getElementById("blessingText").innerHTML = CONFIG.blessing.replace(/ /g, "<br>");
+console.log("blessing raw:", JSON.stringify(CONFIG.blessing));
+document.getElementById("blessingText").innerHTML = CONFIG.blessing.split(" ").join("<br>");
 document.getElementById("lyricQuote").textContent = CONFIG.lyricQuote;
 document.querySelector(".quote-source").textContent =
   "—— 五月天 《" + CONFIG.songName + "》";
