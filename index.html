@@ -231,6 +231,22 @@
     margin-top: 8px;
   }
 
+  /* ===== 卜卜胡萝卜吉祥物 ===== */
+  .carrot-mascot {
+    display: block;
+    margin: 0 auto 12px;
+  }
+  .carrot-mascot svg {
+    display: block;
+    margin: 0 auto;
+    animation: carrotFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes carrotFloat {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-10px) rotate(2deg); }
+  }
+
   /* ===== 底部礼物动画 ===== */
   .gift-footer {
     text-align: center;
@@ -443,8 +459,8 @@
   <!-- 书名 -->
   <div class="book-section">
     <span class="book-icon">📖</span>
-    <h1 class="book-title" id="bookTitle">BOOK_TITLE</h1>
-    <p class="book-author" id="bookAuthor">BOOK_AUTHOR</p>
+    <h1 class="book-title" id="bookTitle">显微镜下的大明</h1>
+    <p class="book-author" id="bookAuthor">马伯庸</p>
   </div>
 
   <!-- 分割线 -->
@@ -463,33 +479,74 @@
   <!-- 祝福语 -->
   <div class="blessing-section">
     <div class="section-label">送 给 你</div>
-    <p class="blessing-text" id="blessingText">BLESSING_TEXT</p>
+    <p class="blessing-text" id="blessingText">愿你拥有一双发现细节的眼睛</p>
   </div>
 
   <!-- 歌词引用 -->
   <div class="lyric-quote">
     <div class="quote-mark">♫</div>
-    <p class="quote-text" id="lyricQuote">LYRIC_QUOTE</p>
-    <p class="quote-source">—— 五月天 《SONG_NAME》</p>
+    <p class="quote-text" id="lyricQuote">有些事现在不做一辈子都不会做了</p>
+    <p class="quote-source">—— 五月天 《有些事现在不做一辈子都不会做了》</p>
   </div>
 
   <!-- 底部礼物 -->
   <div class="gift-footer">
+    <!-- 卜卜胡萝卜 -->
+    <div class="carrot-mascot">
+      <svg viewBox="0 0 120 140" width="100" height="117" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="carrotGrad" cx="42%" cy="38%" r="58%">
+            <stop offset="0%" stop-color="#FFB366"/>
+            <stop offset="45%" stop-color="#FF8C3F"/>
+            <stop offset="100%" stop-color="#E86A20"/>
+          </radialGradient>
+        </defs>
+        <!-- 头顶绿叶：参照原版做成更厚的叶片 -->
+        <path d="M37 38 C28 28, 25 16, 33 10 C43 6, 51 18, 50 35 C48 42, 42 43, 37 38Z" fill="#78D447"/>
+        <path d="M39 35 C41 27, 39 19, 35 13" stroke="#5FAE34" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M53 34 C48 21, 49 8, 59 4 C68 5, 73 19, 69 34 C66 41, 58 42, 53 34Z" fill="#87DF52"/>
+        <path d="M59 33 C59 25, 58 15, 60 8" stroke="#63B53B" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M70 38 C80 28, 93 18, 90 9 C84 4, 72 9, 68 23 C66 31, 65 37, 70 38Z" fill="#78D447"/>
+        <path d="M71 34 C75 27, 81 19, 87 13" stroke="#5FAE34" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- 身体：更接近原版的圆润扁球形 -->
+        <ellipse cx="60" cy="83" rx="45" ry="37" fill="url(#carrotGrad)"/>
+        <ellipse cx="60" cy="117" rx="32" ry="5.5" fill="#6E3A16" opacity="0.18"/>
+        <!-- 腮红 -->
+        <ellipse cx="35" cy="86" rx="10" ry="6" fill="#FF6B4A" opacity="0.28"/>
+        <ellipse cx="85" cy="86" rx="10" ry="6" fill="#FF6B4A" opacity="0.28"/>
+        <!-- 白底蓝瞳眼睛 -->
+        <ellipse cx="47" cy="77" rx="8.2" ry="10.5" fill="#FFFFFF"/>
+        <ellipse cx="73" cy="77" rx="8.2" ry="10.5" fill="#FFFFFF"/>
+        <ellipse cx="48" cy="79" rx="4.2" ry="6.1" fill="#4D9BEB"/>
+        <ellipse cx="72" cy="79" rx="4.2" ry="6.1" fill="#4D9BEB"/>
+        <ellipse cx="48" cy="79.5" rx="2.3" ry="3.5" fill="#2D6FC7"/>
+        <ellipse cx="72" cy="79.5" rx="2.3" ry="3.5" fill="#2D6FC7"/>
+        <!-- 眼神光 -->
+        <circle cx="49.5" cy="75" r="1.7" fill="#FFFFFF" opacity="0.95"/>
+        <circle cx="73.5" cy="75" r="1.7" fill="#FFFFFF" opacity="0.95"/>
+        <!-- 嘴巴：接近原版的圆润 W 形 -->
+        <path d="M50 95 Q54 100 58 95 Q60 93 62 95 Q66 100 70 95" stroke="#17110C" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
     <span class="gift-icon">🎁</span>
     <p class="gift-label">扫一扫，拆开这份心意</p>
   </div>
 </div>
 
 <script>
-// ==================== 默认配置（无 URL 参数时的回退值） ====================
+// ==================== 默认配置（无 URL 参数时展示第一张卡片） ====================
 
 const DEFAULTS = {
-  bookTitle:   "BOOK_TITLE",
-  bookAuthor:  "BOOK_AUTHOR",
-  recommend:   ["RECOMMEND_LINE_1", "RECOMMEND_LINE_2", "RECOMMEND_LINE_3"],
-  blessing:    "BLESSING_TEXT",
-  lyricQuote:  "LYRIC_QUOTE",
-  songName:    "SONG_NAME",
+  bookTitle:   "显微镜下的大明",
+  bookAuthor:  "马伯庸",
+  recommend:   [
+    "从六个民间档案中窥见真实的明朝",
+    "小人物命运里藏着大历史的暗流",
+    "读史不一定要看帝王将相",
+  ],
+  blessing:    "愿你拥有一双发现细节的眼睛",
+  lyricQuote:  "有些事现在不做一辈子都不会做了",
+  songName:    "有些事现在不做一辈子都不会做了",
   bgm:            "bgm.mp3",
   bgmLoop:        true,
   watermarkLyrics: [
@@ -499,17 +556,24 @@ const DEFAULTS = {
 };
 
 // ==================== 从 URL 参数读取内容 ====================
-// 使用 hash 方式传递参数，避免微信内置浏览器截断查询参数
+// 优先从 hash 读取（微信兼容），fallback 到 query 参数（浏览器预览兼容）
 // URL 格式:
-//   #t=书名&a=作者&r=理由1|理由2|理由3&b=祝福语&l=歌词引用&s=歌曲名
+//   ?t=书名&a=作者&r=理由1|理由2|理由3&b=祝福语&l=歌词引用&s=歌曲名
+//   或 #t=书名&a=作者...
 // 示例:
-//   #t=活着&a=余华&r=震撼人心|值得深思|必读经典&b=祝你天天开心&l=我不愿让你一个人&s=我不愿让你一个人
+//   ?t=活着&a=余华&r=震撼人心|值得深思|必读经典&b=祝你天天开心
 
 function getParam(key) {
+  // 优先从 hash 读（微信不会截断 hash）
   const hash = window.location.hash.replace(/^#/, "");
-  if (!hash) return "";
-  const params = new URLSearchParams(hash);
-  return params.get(key) || "";
+  if (hash) {
+    const p = new URLSearchParams(hash);
+    const v = p.get(key);
+    if (v) return v;
+  }
+  // fallback: 从 query 参数读（浏览器直接打开时可用）
+  const q = new URLSearchParams(window.location.search);
+  return q.get(key) || "";
 }
 
 function buildConfig() {
