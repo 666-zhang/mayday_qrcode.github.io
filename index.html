@@ -6,13 +6,13 @@
 <title>送给你的礼物</title>
 <style>
   :root {
-    --bg-deep: #050914;
-    --blue: #1a3a6c;
-    --blue-light: #2d5faa;
-    --gold: #e8c560;
-    --gold-light: #f5e6b8;
-    --white: #f0ece4;
-    --text: #e0dcd0;
+    --bg-deep: #0a0604;
+    --carrot: #d94a22;
+    --carrot-light: #f06030;
+    --orange: #ff8c34;
+    --orange-light: #ffd4a8;
+    --white: #fff2e6;
+    --text: #f0ddcc;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -56,12 +56,12 @@
     display: inline-block;
     width: 60px;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
     margin: 0 8px;
   }
   .top-ornament .star {
     display: inline-block;
-    color: var(--gold);
+    color: var(--orange);
     font-size: 18px;
     animation: starPulse 2s ease-in-out infinite;
   }
@@ -104,14 +104,14 @@
     font-weight: 700;
     letter-spacing: 3px;
     color: var(--white);
-    text-shadow: 0 0 40px rgba(232, 197, 96, 0.4),
-                 0 0 80px rgba(45, 95, 170, 0.3);
+    text-shadow: 0 0 40px rgba(255, 140, 52, 0.4),
+                 0 0 80px rgba(220, 90, 50, 0.3);
     animation: glowBreath 3s ease-in-out infinite;
     line-height: 1.4;
   }
   .book-author {
     font-size: 16px;
-    color: var(--gold);
+    color: var(--orange);
     margin-top: 12px;
     letter-spacing: 2px;
     opacity: 0.8;
@@ -128,7 +128,7 @@
     display: inline-block;
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: var(--gold);
+    background: var(--orange);
     margin: 0 8px;
     opacity: 0.5;
   }
@@ -143,7 +143,7 @@
   }
   .section-label {
     font-size: 13px;
-    color: var(--gold);
+    color: var(--orange);
     letter-spacing: 4px;
     text-align: center;
     margin-bottom: 20px;
@@ -156,8 +156,8 @@
     letter-spacing: 1px;
     text-align: justify;
     padding: 20px 16px;
-    border-left: 2px solid rgba(232, 197, 96, 0.3);
-    border-right: 2px solid rgba(232, 197, 96, 0.3);
+    border-left: 2px solid rgba(255, 140, 52, 0.3);
+    border-right: 2px solid rgba(255, 140, 52, 0.3);
     position: relative;
   }
   .typewriter p {
@@ -173,7 +173,7 @@
   .cursor-blink {
     display: inline-block;
     width: 2px; height: 18px;
-    background: var(--gold);
+    background: var(--orange);
     margin-left: 2px;
     vertical-align: middle;
     animation: blink 0.8s step-end infinite;
@@ -192,11 +192,11 @@
     letter-spacing: 3px;
     line-height: 2;
     background: linear-gradient(90deg,
-      var(--gold-light) 0%,
-      var(--gold) 25%,
+      var(--orange-light) 0%,
+      var(--orange) 25%,
       var(--white) 50%,
-      var(--gold) 75%,
-      var(--gold-light) 100%
+      var(--orange) 75%,
+      var(--orange-light) 100%
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
@@ -214,20 +214,20 @@
   }
   .lyric-quote .quote-mark {
     font-size: 36px;
-    color: var(--gold);
+    color: var(--orange);
     opacity: 0.4;
     line-height: 1;
   }
   .lyric-quote .quote-text {
     font-size: 14px;
-    color: rgba(240, 236, 226, 0.5);
+    color: rgba(255, 242, 230, 0.5);
     letter-spacing: 2px;
     line-height: 2;
     font-style: italic;
   }
   .lyric-quote .quote-source {
     font-size: 12px;
-    color: rgba(240, 236, 226, 0.3);
+    color: rgba(255, 242, 230, 0.3);
     margin-top: 8px;
   }
 
@@ -244,7 +244,7 @@
   }
   .gift-label {
     font-size: 12px;
-    color: rgba(240, 236, 226, 0.35);
+    color: rgba(255, 242, 230, 0.35);
     letter-spacing: 2px;
     margin-top: 8px;
   }
@@ -254,7 +254,7 @@
     position: fixed;
     z-index: 0;
     pointer-events: none;
-    color: rgba(232, 197, 96, 0.15);
+    color: rgba(255, 140, 52, 0.15);
     font-size: 24px;
     animation: noteFloat 8s linear infinite;
   }
@@ -273,8 +273,8 @@
     to   { opacity:1; }
   }
   @keyframes glowBreath {
-    0%, 100% { text-shadow: 0 0 30px rgba(232,197,96,0.3), 0 0 60px rgba(45,95,170,0.2); }
-    50%      { text-shadow: 0 0 50px rgba(232,197,96,0.6), 0 0 100px rgba(45,95,170,0.4); }
+    0%, 100% { text-shadow: 0 0 30px rgba(255,140,52,0.3), 0 0 60px rgba(220,90,50,0.2); }
+    50%      { text-shadow: 0 0 50px rgba(255,140,52,0.6), 0 0 100px rgba(220,90,50,0.4); }
   }
   @keyframes gradientFlow {
     0%   { background-position: 0% center; }
@@ -329,8 +329,8 @@
     z-index: 10;
     width: 44px; height: 44px;
     border-radius: 50%;
-    background: rgba(26, 58, 108, 0.5);
-    border: 1.5px solid rgba(232, 197, 96, 0.4);
+    background: rgba(180, 60, 30, 0.5);
+    border: 1.5px solid rgba(255, 140, 52, 0.4);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     cursor: pointer;
@@ -346,13 +346,13 @@
   }
   .music-toggle .note-icon {
     font-size: 20px;
-    color: var(--gold);
+    color: var(--orange);
     line-height: 1;
     transition: transform 0.3s ease;
   }
   .music-toggle.playing {
-    background: rgba(232, 197, 96, 0.2);
-    border-color: var(--gold);
+    background: rgba(255, 140, 52, 0.2);
+    border-color: var(--orange);
     animation: musicSpin 4s linear infinite;
   }
   .music-toggle.playing .note-icon {
@@ -374,11 +374,11 @@
     position: fixed;
     top: 70px; right: 10px;
     z-index: 10;
-    background: rgba(5, 9, 20, 0.9);
-    border: 1px solid rgba(232, 197, 96, 0.3);
+    background: rgba(10, 6, 4, 0.9);
+    border: 1px solid rgba(255, 140, 52, 0.3);
     border-radius: 8px;
     padding: 8px 14px;
-    color: var(--gold);
+    color: var(--orange);
     font-size: 12px;
     letter-spacing: 1px;
     white-space: nowrap;
@@ -395,12 +395,12 @@
     width: 0; height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-bottom: 6px solid rgba(232, 197, 96, 0.3);
+    border-bottom: 6px solid rgba(255, 140, 52, 0.3);
   }
 
   @keyframes musicPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(232, 197, 96, 0.3); }
-    50%      { box-shadow: 0 0 0 10px rgba(232, 197, 96, 0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 140, 52, 0.3); }
+    50%      { box-shadow: 0 0 0 10px rgba(255, 140, 52, 0); }
   }
   @keyframes musicSpin {
     0%   { transform: rotate(0deg); }
@@ -606,8 +606,8 @@ document.querySelector(".quote-source").textContent =
 
     // 底部光晕
     const glow = ctx.createRadialGradient(w/2, h*0.7, 0, w/2, h*0.7, Math.min(w,h)*0.6);
-    glow.addColorStop(0, "rgba(26,58,108,0.08)");
-    glow.addColorStop(1, "rgba(5,9,20,0)");
+    glow.addColorStop(0, "rgba(180,60,30,0.08)");
+    glow.addColorStop(1, "rgba(10,6,4,0)");
     ctx.fillStyle = glow;
     ctx.fillRect(0, 0, w, h);
 
@@ -619,12 +619,12 @@ document.querySelector(".quote-source").textContent =
 
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(232,197,96,${s.alpha})`;
+      ctx.fillStyle = `rgba(255,140,52,${s.alpha})`;
       ctx.fill();
 
       // 大星星加十字光芒
       if (s.r > 1.4) {
-        ctx.strokeStyle = `rgba(232,197,96,${s.alpha * 0.3})`;
+        ctx.strokeStyle = `rgba(255,140,52,${s.alpha * 0.3})`;
         ctx.lineWidth = 0.5;
         ctx.beginPath();
         ctx.moveTo(s.x - s.r*4, s.y);
