@@ -437,7 +437,7 @@
 <div class="lyrics-watermark" id="lyricsWatermark"></div>
 
 <!-- 音乐播放按钮 -->
-<audio id="bgmAudio" preload="auto" style="display:none;"></audio>
+<audio id="bgmAudio" preload="auto" playsinline crossorigin="anonymous" style="display:none;"></audio>
 <button class="music-toggle paused" id="musicToggle" title="播放音乐">
   <span class="note-icon">♫</span>
 </button>
@@ -816,12 +816,24 @@ document.querySelector(".quote-source").textContent =
     play();
   });
 
-  // 音乐加载完成后尝试自动播放
-  audio.addEventListener("canplaythrough", () => {
+  // canplay 比 canplaythrough 更早触发，只需有足够数据开始播放即可
+  audio.addEventListener("canplay", () => {
     if (!hasInteracted && !autoPlayAttempted) {
       autoPlayAttempted = true;
       play();
     }
+  });
+
+  // 缓冲中 → 显示 loading 状态
+  audio.addEventListener("waiting", () => {
+    if (isPlaying) setState("loading");
+  });
+  audio.addEventListener("stalled", () => {
+    if (isPlaying) setState("loading");
+  });
+  // 缓冲恢复 → 恢复 playing 状态
+  audio.addEventListener("playing", () => {
+    setState("playing");
   });
 
   // 首次显示提示（延迟出现，给自动播放一个机会）
@@ -832,23 +844,34 @@ document.querySelector(".quote-source").textContent =
     }
   }, 2500);
 
-  // 页面隐藏时暂停，返回时继续
+  // 页面隐藏时暂停，返回时恢复（减少后台资源占用）
+  let wasPlayingBeforeHidden = false;
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
+      wasPlayingBeforeHidden = isPlaying;
       if (isPlaying) {
         audio.pause();
       }
     } else {
-      if (!document.hidden && isPlaying) {
-        audio.play().catch(() => {});
+      if (wasPlayingBeforeHidden) {
+        isPlaying = true; // 提前设置避免 play() 回调延迟
+        audio.play().then(() => {
+          setState("playing");
+        }).catch(() => {
+          isPlaying = false;
+          setState("paused");
+        });
+        wasPlayingBeforeHidden = false;
       }
     }
   });
 
-  // 音频播放结束后不循环（如需循环可设置 loop 属性）
+  // 音频播放结束后（仅非循环模式下重置状态）
   audio.addEventListener("ended", () => {
-    isPlaying = false;
-    setState("paused");
+    if (!audio.loop) {
+      isPlaying = false;
+      setState("paused");
+    }
   });
 
   // 加载错误
