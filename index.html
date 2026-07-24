@@ -534,72 +534,98 @@
 </div>
 
 <script>
-// ==================== 默认配置（无 URL 参数时展示第一张卡片） ====================
+// ==================== 书籍数据（所有卡片内容集中管理） ====================
+const BOOKS = {
+  book1: {
+    bookTitle:  "显微镜下的大明",
+    bookAuthor: "马伯庸",
+    recommend: [
+      "从六个民间档案中窥见真实的明朝",
+      "小人物命运里藏着大明历史的暗流",
+      "读史不一定要看帝王将相",
+      "史书轻轻一页便是多少人重重的一生"
+    ],
+    blessing:   "愿你拥有一双发现细节的眼睛 玫瑰不凋谢骄傲不妥协",
+    lyricQuote: "如烟",
+    songName:   "如烟",
+    bgm:        "如烟+(Live)-周深&五月天.mp3"
+  },
+  book2: {
+    bookTitle:  "万历十五年",
+    bookAuthor: "黄仁宇",
+    recommend: [
+      "换个角度看历史这一年什么大事都没发生",
+      "却埋下了王朝崩塌的所有伏笔",
+      "转眼之间 一生已过",
+      "世界曾疯狂 爱情也绽放"
+    ],
+    blessing:   "愿你从历史的脉络里 窥见未来的密码",
+    lyricQuote: "转眼",
+    songName:   "转眼",
+    bgm:        "转眼-五月天.mp3"
+  },
+  book3: {
+    bookTitle:  "置身事内",
+    bookAuthor: "兰小欢",
+    recommend: [
+      "理解中国经济的绝佳入门书",
+      "没有高深术语 只有真实的政府运作逻辑",
+      "读完你会重新理解房价、债务和地方竞争"
+    ],
+    blessing:   "愿你在这个复杂的世界 相信内心深处顽固的自己",
+    lyricQuote: "顽固",
+    songName:   "顽固",
+    bgm:        "顽固-五月天.mp3"
+  },
+  book4: {
+    bookTitle:  "小王子",
+    bookAuthor: "圣埃克苏佩里",
+    recommend: [
+      "写给成年人的童话",
+      "好好的生活 好好的变老"
+    ],
+    blessing:   "愿你把自己照顾好 好到遗憾无法打扰",
+    lyricQuote: "好好",
+    songName:   "好好",
+    bgm:        "好好.mp3"
+  }
+};
 
-const DEFAULTS = {
-  bookTitle:   "显微镜下的大明",
-  bookAuthor:  "马伯庸",
-  recommend:   [
-    "从六个民间档案中窥见真实的明朝",
-    "小人物命运里藏着大历史的暗流",
-    "读史不一定要看帝王将相",
-  ],
-  blessing:    "愿你拥有一双发现细节的眼睛",
-  lyricQuote:  "有些事现在不做一辈子都不会做了",
-  songName:    "有些事现在不做一辈子都不会做了",
-  bgm:            "bgm.mp3",
-  bgmLoop:        true,
+const SHARED = {
+  bgmLoop: true,
   watermarkLyrics: [
     "你不是真正的快乐", "突然好想你", "我不愿让你一个人",
-    "后来的我们", "知足", "温柔", "倔强", "拥抱", "星空", "干杯",
+    "后来的我们", "知足", "温柔", "倔强", "拥抱", "星空", "干杯"
   ]
 };
 
 // ==================== 从 URL 参数读取内容 ====================
 // 优先从 hash 读取（微信兼容），fallback 到 query 参数（浏览器预览兼容）
-// URL 格式:
-//   ?t=书名&a=作者&r=理由1|理由2|理由3&b=祝福语&l=歌词引用&s=歌曲名
-//   或 #t=书名&a=作者...
-// 示例:
-//   ?t=活着&a=余华&r=震撼人心|值得深思|必读经典&b=祝你天天开心
-
+// URL 格式: #id=book1（极简 ID 模式，大幅缩小二维码尺寸）
 function getParam(key) {
-  // 优先从 hash 读（微信不会截断 hash）
   const hash = window.location.hash.replace(/^#/, "");
   if (hash) {
     const p = new URLSearchParams(hash);
     const v = p.get(key);
     if (v) return v;
   }
-  // fallback: 从 query 参数读（浏览器直接打开时可用）
   const q = new URLSearchParams(window.location.search);
   return q.get(key) || "";
 }
 
-function buildConfig() {
-  const t = getParam("t");
-  const a = getParam("a");
-  const r = getParam("r");
-  const b = getParam("b");
-  const l = getParam("l");
-  const s = getParam("s");
-  const m = getParam("bgm");
-
-  // 有 URL 参数就用参数值，没有则用默认值
-  return {
-    bookTitle:   t || DEFAULTS.bookTitle,
-    bookAuthor:  a || DEFAULTS.bookAuthor,
-    recommend:   r ? r.split("|") : DEFAULTS.recommend,
-    blessing:    b || DEFAULTS.blessing,
-    lyricQuote:  l || DEFAULTS.lyricQuote,
-    songName:    s || DEFAULTS.songName,
-    bgm:         m || DEFAULTS.bgm,
-    bgmLoop:     getParam("bgm_loop") === "0" ? false : DEFAULTS.bgmLoop,
-    watermarkLyrics: DEFAULTS.watermarkLyrics,
-  };
-}
-
-const CONFIG = buildConfig();
+const bookId = getParam("id") || "book1";
+const DATA = BOOKS[bookId] || BOOKS.book1;
+const CONFIG = {
+  bookTitle:       DATA.bookTitle,
+  bookAuthor:      DATA.bookAuthor,
+  recommend:       DATA.recommend,
+  blessing:        DATA.blessing,
+  lyricQuote:      DATA.lyricQuote,
+  songName:        DATA.songName,
+  bgm:             DATA.bgm,
+  bgmLoop:         SHARED.bgmLoop,
+  watermarkLyrics: SHARED.watermarkLyrics,
+};
 
 // ==================== 渲染内容 ====================
 
