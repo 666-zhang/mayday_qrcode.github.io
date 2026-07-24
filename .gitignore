@@ -1,0 +1,13 @@
+# Python 脚本（本地工具，无需上传到 GitHub Pages）
+*.py
+*.png
+*.docx
+*.xlsx
+*.csv
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 调试日志
+debug.log
